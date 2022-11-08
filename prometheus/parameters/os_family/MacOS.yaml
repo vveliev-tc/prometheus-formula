@@ -1,0 +1,63 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == MacOS.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+{%- if grains.os == 'MacOS' %}
+    {%- set macos_rootuser = salt['cmd.run']("stat -f '%Su' /dev/console") %}
+    {%- set macos_rootgroup = salt['cmd.run']("stat -f '%Sg' /dev/console") %}
+{%- endif %}
+
+values:
+  div: '/'
+  shell: /sbin/nologin
+  dir:
+    default: /etc/defaults
+  identity:
+    rootuser: {{ macos_rootuser | d('') }}
+    rootgroup: {{ macos_rootgroup | d('') }}
+  kernel: darwin
+  pkg:
+    component:
+      prometheus:
+        archive:
+          source_hash: 740e36bcacc0c5d4495f5341fcfa8b7e0dc623d12e8b07ac291052ea0a681325
+      alertmanager:
+        archive:
+          source_hash: efeebaa8e51c521ecb3440345fb65962533cae022d71dff8b127911e893ded2a
+      blackbox_exporter:
+        archive:
+          source_hash: a371d0496adb5d62368d6606928c5effd318d1387f6b9a9998f8d0333492645a
+      consul_exporter:
+        archive:
+          source_hash: 75641783938967c11c18d6d340028ff2dce7ad0ae5e300fa631b813cc6ea9647
+      graphite_exporter:
+        archive:
+          source_hash: f9c0aa745502c0ab01fdcca29181801810202e0aed512a9aa9a37bb4be88a919
+      haproxy_exporter:
+        archive:
+          source_hash: 8fdb8bb182586c57e5892816a02846bae0998916765d22bb81b2c444a3565862
+      memcached_exporter:
+        archive:
+          source_hash: e10685cca5ffd8a3a7574b3dc096dc7418f34906abd399f881be06dd38be62cb
+      mysqld_exporter:
+        archive:
+          source_hash: 8e0a7d8847790d6dcdcf392e6dd227458a7bcaa1e0890cc6326fdf956421f2a7
+      node_exporter:
+        archive:
+          source_hash: 20fadb3108de0a9cc70a1333394e5be90416b4f91025f9fc66f5736335e94398
+      pushgateway:
+        archive:
+          source_hash: 25399a4c6600c1931f9d9bd5294700c2b53f964188b1c6003f9d12a2e176aac1
+      statsd_exporter:
+        archive:
+          source_hash: 15132494523c2b6a89e09b2da63452c8fe587fb82fcc3fd21cc75a4aa2766644
+...

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+#
+# Set default values.
 ---
-prometheus:
+values:
   div: '/'
   force: false
   overwrite: true
@@ -321,3 +323,4 @@ prometheus:
   linux:
     altpriority: 0
   kernel: linux
+...

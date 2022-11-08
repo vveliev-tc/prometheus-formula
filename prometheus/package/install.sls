@@ -2,7 +2,7 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import prometheus as p with context %}
+{%- from tplroot ~ "/libs/map.jinja" import prometheus as p with context %}
 
 {%- set sls_service_running = tplroot ~ '.service.running' %}
 {%- set sls_repo_install = tplroot ~ '.package.repo.install' %}

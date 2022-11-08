@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == OpenBSD.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+values:
+  identity:
+    rootgroup: wheel
+  kernel: openbsd
+  pkg:
+    component:
+      prometheus:
+        archive:
+          source_hash: c3c69919b359f00a84ef12f7ed6a956111790d64a71bd94990572baaf63377ce
+      alertmanager:
+        archive:
+          source_hash: 88ce1b3f11bb28f24b98235994277b2c31aa03b2b2609e0058c04efa0cc5596f
+      blackbox_exporter:
+        archive:
+          source_hash: 0dee97d1204bac925bde919958ae890730d87386a816ed0b248c8038ee43794d
+      consul_exporter:
+        archive:
+          source_hash: b53ee2bd0e670907eac894387e286b0dd11eb3149fcd4e19ed586006d3de741a
+      graphite_exporter:
+        archive:
+          source_hash: 98cbd7176f1c61023892de64ad26edc3cd7895037e3cc282c4edec53dded7156
+      haproxy_exporter:
+        archive:
+          source_hash: bc2b222f6a08232ef643cd6dcda3264f3bd7388a5bee25365cef137c7dea17e8
+      memcached_exporter:
+        archive:
+          source_hash: 21db1bffc561d47b4490ccb2cde721244d00e95f504cdcfee618bc4bb877e731
+      mysqld_exporter:
+        archive:
+          source_hash: b37d6fe68e2c884540ea41c5efcfb16d0bc5da517fe3ba713144504df1ba635d
+      pushgateway:
+        archive:
+          source_hash: 0bce168e4b19234df9e954393a2102c91e4d62336b2721ed882f2003a4445d51
+      statsd_exporter:
+        archive:
+          source_hash: c89acb365b75af03ce612873d8b20226e3882c0177752ea0ce17a9f5e41eb5b4
+...

@@ -3,7 +3,7 @@
 
 {%- if grains.os_family|lower == 'redhat' %}
     {%- set tplroot = tpldir.split('/')[0] %}
-    {%- from tplroot ~ "/map.jinja" import prometheus as p with context %}
+    {%- from tplroot ~ "/libs/map.jinja" import prometheus as p with context %}
 
     {%- if p.pkg.use_upstream_repo and 'repo' in p.pkg and p.pkg.repo %}
 

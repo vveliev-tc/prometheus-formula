@@ -483,7 +483,7 @@ For example, the following ``formula.component.config`` SLS:
 
 .. code-block:: sls
 
-   {%- from "formula/libtofs.jinja" import files_switch with context %}
+   {%- from "formula/libs/libtofs.jinja" import files_switch with context %}
 
    formula configuration file:
      file.managed:

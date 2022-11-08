@@ -2,8 +2,8 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import prometheus as p with context %}
-{%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
+{%- from tplroot ~ "/libs/map.jinja" import prometheus as p with context %}
+{%- from tplroot ~ "/libs/libtofs.jinja" import files_switch with context %}
 
 {%- if grains.os_family in ('FreeBSD',) %}
     {%- set sls_service_clean = tplroot ~ '.service.clean' %}

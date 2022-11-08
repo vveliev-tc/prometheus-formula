@@ -2,7 +2,7 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import prometheus as p with context %}
+{%- from tplroot ~ "/libs/map.jinja" import prometheus as p with context %}
 
   {%- if grains.kernel|lower == 'linux' and p.linux.altpriority|int > 0 and grains.os_family != 'Arch' %}
       {%- if 'wanted' in p and p.wanted and 'component' in p.wanted and p.wanted.component %}

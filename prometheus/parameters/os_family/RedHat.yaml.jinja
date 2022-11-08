@@ -1,0 +1,63 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == RedHat.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+{%- if grains.os == 'Amazon' %}
+  {%- set releasever = salt['cmd.run']("rpm -E '%{rhel}'") %}
+{% else %}
+  {%- set releasever = "$releasever" %}
+{%- endif %}
+values:
+  pkg:
+    use_upstream_repo: false   # not working on cent8
+    use_upstream_archive: false
+    component:
+      prometheus:
+        name: prometheus2
+        environ_file: /etc/default/prometheus
+        environ:
+          environ_arg_name: PROMETHEUS_OPTS
+          args:
+            config.file: /etc/prometheus/prometheus.yml
+            storage.tsdb.path: /var/lib/prometheus/data
+            web.console.libraries: /usr/share/prometheus/console_libraries
+            web.console.templates: /usr/share/prometheus/consoles
+      alertmanager:
+        environ_file: /etc/default/alertmanager
+        environ:
+          environ_arg_name: ALERTMANAGER_OPTS
+          args:
+            config.file: /etc/prometheus/alertmanager.yml
+            storage.path: /var/lib/prometheus/alertmanager
+      node_exporter:
+        environ_file: /etc/default/node_exporter
+        environ:
+          environ_arg_name: NODE_EXPORTER_OPTS
+      pushgateway:
+        environ_file: /etc/default/pushgateway
+        environ:
+          environ_arg_name: PUSHGATEWAY_OPTS
+      blackbox_exporter:
+        environ_file: /etc/default/blackbox_exporter
+        environ:
+          environ_arg_name: BLACKBOX_EXPORTER_OPTS
+          args:
+            config.file: /etc/prometheus/blackbox.yml
+    repo:
+      # yamllint disable rule:line-length
+      baseurl: "https://packagecloud.io/prometheus-rpm/release/el/{{ releasever }}/$basearch"
+      gpgkey: 'https://packagecloud.io/prometheus-rpm/release/gpgkey https://raw.githubusercontent.com/lest/prometheus-rpm/master/RPM-GPG-KEY-prometheus-rpm'
+      # yamllint enable rule:line-length
+      sslverify: 1
+      sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+      metadata_expire: 300
+...

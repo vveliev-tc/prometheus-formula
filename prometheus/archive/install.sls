@@ -2,9 +2,9 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/map.jinja" import prometheus as p with context %}
-{%- from tplroot ~ "/files/macros.jinja" import format_kwargs with context %}
-{%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
+{%- from tplroot ~ "/libs/map.jinja" import prometheus as p with context %}
+{%- from tplroot ~ "/libs/macros.jinja" import format_kwargs with context %}
+{%- from tplroot ~ "/libs/libtofs.jinja" import files_switch with context %}
 {%- set sls_config_users = tplroot ~ '.config.users' %}
 
 include:

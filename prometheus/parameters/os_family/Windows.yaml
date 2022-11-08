@@ -1,0 +1,55 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == Windows.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+values:
+  div: '\\'
+  kernel: windows
+  dir:
+    archive: C:\\prometheus
+    etc: C:\\prometheus\\etc
+    tmp: C:\\temp\\prometheus-salt-tmp
+    var: C:\\prometheus\var
+
+  pkg:
+    component:
+      prometheus:
+        archive:
+          source_hash: eb138082a4d5e4d5b1e3ca838fa508f053474d46bca76e87ab0834f0d8b110db
+      alertmanager:
+        archive:
+          source_hash: 512dbed02a3cc7e3f06d737f56179e458c462762b3427063b89c62a54d9645c6
+      blackbox_exporter:
+        archive:
+          source_hash: 21ea148870631310002cbd48be54ca45e8d300da5a902b0aec052f1a64316d93
+      consul_exporter:
+        archive:
+          source_hash: 54579bc5dfa6a238e310a1874b0a362027661dfa1754535e74610dc8ef6163b1
+      graphite_exporter:
+        archive:
+          source_hash: f83fad71bad99ccac145d65f82bf9d17fa37168a5dcce6415c6350e79a84e638
+      haproxy_exporter:
+        archive:
+          source_hash: 044118feb98b74eb921e27bd4b511732b553896c672c19bdd3418445dc030794
+      memcached_exporter:
+        archive:
+          source_hash: 9e83c00c9d249c942f65b6a48112e6bd6e28a3d15b8a1d35e935621657b3d837
+      mysqld_exporter:
+        archive:
+          source_hash: 38605ae648f8def07a0f412d81a30a6c48c0d20a6981468d25b91c8aa529e599
+      pushgateway:
+        archive:
+          source_hash: 506b555e7a13cabf3d85ec0dbe1bc6bc3a2444c0cc468baa8d31e7fc2fe18dd1
+      statsd_exporter:
+        archive:
+          source_hash: 9362b7482e74792f111c4bb1a372b18a88f6354c78f24713bacfbcb050883556
+...

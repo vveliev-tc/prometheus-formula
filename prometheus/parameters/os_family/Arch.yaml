@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set values specific to:
+#   salt['config.get']('os_family') == Arch.
+#
+# You just need to add the key:values for this `os_family` that differ
+# from `defaults.yaml` + `<osarch>.yaml`.
+#
+# If you do not need to provide defaults via the `os_family` config,
+# you can remove this file or provide at least an empty dict, e.g.
+# values: {}
+---
+values:
+  pkg:
+    component:
+      alertmanager:
+        name: alertmanager
+      blackbox_exporter:
+        name: prometheus-blackbox-exporter
+      prometheus:
+        environ_file: /etc/conf.d/prometheus
+        environ:
+          environ_arg_name: PROMETHEUS_ARGS
+      node_exporter:
+        name: prometheus-node-exporter
+        environ_file: /etc/conf.d/prometheus-node-exporter
+        environ:
+          environ_arg_name: NODE_EXPORTER_ARGS
+...
