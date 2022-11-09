@@ -2,7 +2,7 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/libs/map.jinja" import prometheus with context %}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata with context %}
 
 {%- set name = 'node_exporter' %}
 {%- set config = p.exporters[name]['textfile_collectors']['smartmon'] %}

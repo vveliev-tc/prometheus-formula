@@ -2,7 +2,7 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/libs/map.jinja" import prometheus as p with context %}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata as p with context %}
 
   {%- if grains.kernel|lower == 'linux' and p.linux.altpriority|int > 0 and grains.os_family != 'Arch' %}
       {%- set sls_archive_install = tplroot ~ '.archive.install' %}

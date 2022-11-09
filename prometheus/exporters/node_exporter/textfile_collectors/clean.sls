@@ -2,7 +2,7 @@
 # vim: ft=sls
 
 {%- set tplroot = tpldir.split('/')[0] %}
-{%- from tplroot ~ "/libs/map.jinja" import prometheus as p with context %}
+{%- from tplroot ~ "/libs/map.jinja" import mapdata as p with context %}
 
 {%- set name = 'node_exporter' %}
 {%- if name in p.wanted.component and 'service' in p.pkg.component[name] %}
