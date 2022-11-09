@@ -6,7 +6,7 @@
 {%- from tplroot ~ "/libs/map.jinja" import mapdata with context %}
 
 {%- set _mapdata = {
-      "values": prometheus,
+      "values": mapdata,
     } %}
 {%- do salt["log.debug"]("### MAP.JINJA DUMP ###\n" ~ _mapdata | yaml(False)) %}
 
