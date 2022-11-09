@@ -4,6 +4,15 @@
 # Set default values.
 ---
 values:
+  sources:
+    - "Y:G@osarch"
+    - "Y:G@os_family"
+    - "Y:G@init"
+    - "C@prometheus:lookup"
+    - "C@prometheus"
+    - "Y:G@id"
+    - "Y:C@roles"
+    - "I@prometheus"    # Pillar is disabled for this formula
   div: '/'
   force: false
   overwrite: true
